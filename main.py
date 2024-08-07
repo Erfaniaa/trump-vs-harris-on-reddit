@@ -26,6 +26,6 @@ if __name__ == "__main__":
 	print(KEYWORDS_1_LIST)
 	print("Votes percent:", round(100 * keywords_1_list_total_votes / len(comments_list_by_author), 2))
 	print(KEYWORDS_2_LIST)
-	print("Votes percent:", round(100 * keywords_2_list_total_votes / len(comments_list_by_author)))
+	print("Votes percent:", round(100 * keywords_2_list_total_votes / len(comments_list_by_author), 2))
 
 		
