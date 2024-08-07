@@ -1,0 +1,31 @@
+from credentials import CLIENT_ID, CLIENT_SECRET
+from config import KEYWORDS_1_LIST, KEYWORDS_2_LIST, MAXIMUM_POSTS_PER_SUBREDDIT, SUBREDDIT_NAMES_LIST
+from data_gatherer import DataGatherer
+from sentiment_analyzer import SentimentAnalyzer
+
+if __name__ == "__main__":
+	data_gatherer = DataGatherer(client_id=CLIENT_ID,
+	                             client_secret=CLIENT_SECRET,
+	                             subreddit_names_list=SUBREDDIT_NAMES_LIST,
+	                             maximum_posts_per_subreddit=MAXIMUM_POSTS_PER_SUBREDDIT)
+	comments_list_by_author = data_gatherer.get_comments_list_by_author(subreddit_name="all")
+	sentiment_analyzer = SentimentAnalyzer()
+
+	keywords_1_list_total_votes = 0
+	keywords_2_list_total_votes = 0
+
+	for author_name in comments_list_by_author:
+		keywords_1_list_sentiment_score = sentiment_analyzer.get_texts_list_sentiment_score(KEYWORDS_1_LIST, comments_list_by_author[author_name])
+		keywords_2_list_sentiment_score = sentiment_analyzer.get_texts_list_sentiment_score(KEYWORDS_2_LIST, comments_list_by_author[author_name])
+		
+		if keywords_1_list_sentiment_score > keywords_2_list_sentiment_score:
+			keywords_1_list_total_votes += 1
+		if keywords_1_list_sentiment_score < keywords_2_list_sentiment_score:
+			keywords_2_list_total_votes += 1
+
+	print(KEYWORDS_1_LIST)
+	print("Votes percent:", round(100 * keywords_1_list_total_votes / len(comments_list_by_author), 2))
+	print(KEYWORDS_2_LIST)
+	print("Votes percent:", round(100 * keywords_2_list_total_votes / len(comments_list_by_author)))
+
+		
