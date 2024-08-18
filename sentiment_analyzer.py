@@ -11,6 +11,16 @@ class SentimentAnalyzer:
 
 	@staticmethod
 	def get_single_text_sentiment_score(words_list: list[str], text: str) -> int:
+		text_contains_word = False
+
+		for word in words_list:
+			if word.lower() in text.lower():
+				text_contains_word = True
+				break
+
+		if not text_contains_word:
+			return 0
+		
 		total_sentiment_score = 0
 
 		vader_analyzer = SentimentIntensityAnalyzer()
@@ -33,10 +43,7 @@ class SentimentAnalyzer:
 		else:
 			textblob_score = 0
 
-		for word in words_list:
-			if word.lower() in text.lower():
-				total_sentiment_score = vader_score + textblob_score
-				break
+		total_sentiment_score = vader_score + textblob_score
 
 		total_sentiment_score = min(total_sentiment_score, 1)
 		total_sentiment_score = max(total_sentiment_score, -1)
