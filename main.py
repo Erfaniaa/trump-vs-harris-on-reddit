@@ -32,4 +32,9 @@ if __name__ == "__main__":
 	print(KEYWORDS_2_LIST)
 	print("Votes percent:", round(100 * keywords_2_list_total_votes / len(comments_list_by_author), 2))
 
-		
+	print("Votes difference percent:", round(100 * (max(keywords_1_list_total_votes, keywords_2_list_total_votes) / min(keywords_1_list_total_votes, keywords_2_list_total_votes) - 1), 2))
+
+	if keywords_1_list_total_votes > keywords_2_list_total_votes:
+		print("May", KEYWORDS_1_LIST, "win the US 2024 election?")
+	elif keywords_1_list_total_votes < keywords_2_list_total_votes:
+		print("May", KEYWORDS_2_LIST, "win the US 2024 election?")
