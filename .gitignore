@@ -130,6 +130,21 @@ ENV/
 env.bak/
 venv.bak/
 
+# Project secrets / credentials
+credentials.py
+
+# Generated outputs / caches
+cache/
+full_export.json
+test_charts/
+
+# Repo-root convenience report names (should not be committed)
+report_EN.md
+report_FA.md
+
+# Charts/reports are expected under cache/ (already ignored above).
+# Keep repo-level images trackable (do NOT ignore *.png globally).
+
 # Spyder project settings
 .spyderproject
 .spyproject

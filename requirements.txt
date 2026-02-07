@@ -1,3 +1,30 @@
-praw
-vaderSentiment
-textblob
+# Reddit API
+praw>=7.7.0
+
+# NLP / Machine Learning
+transformers>=4.36.0
+torch>=2.0.0
+sentencepiece>=0.1.99
+
+# LLM API (Claude)
+anthropic>=0.18.0
+
+# HTTP requests (for Polymarket)
+requests>=2.31.0
+
+# Data processing
+dataclasses-json>=0.6.0
+
+# Visualization
+# NOTE: matplotlib<3.10 to avoid mpl_toolkits.mplot3d compatibility issues
+matplotlib>=3.8.0,<3.10
+seaborn>=0.13.0
+numpy>=1.26.0
+
+# Arabic/Persian text rendering for charts
+arabic-reshaper>=3.0.0
+python-bidi>=0.4.2
+
+# Optional: News aggregation
+feedparser>=6.0.0
+aiohttp>=3.9.0

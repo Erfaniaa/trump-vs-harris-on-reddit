@@ -1,16 +1,116 @@
-# Trump vs. Harris Based on Reddit Comments
-Analyze Reddit comments using NLP to predict the potential winner of the US 2024 election
+# US-Iran Conflict Prediction Analyzer
 
-<img src="https://github.com/user-attachments/assets/da68bd0a-12d9-4e43-ab37-9445f28642e3" width="500">
+Analyze Reddit sentiment, Polymarket odds, and multi-source news to predict the likelihood of US military action against Iran.
 
-## Description
+## Features
 
-This GitHub repository contains a project that leverages Python to retrieve and analyze political comments from Reddit. The project is structured into two primary components: data retrieval and sentiment analysis. Using the PRAW library, the project efficiently pulls comments from political discussions on Reddit. These comments are then processed through NLP algorithms—specifically vaderSentiment and TextBlob—to predict whether the commenters are likely to support Donald Trump or Kamala Harris. Currently, the NLP analysis component requires further development and refinement. Contributions aimed at enhancing the NLP techniques or improving the overall accuracy of sentiment predictions are highly encouraged and appreciated.
+- **Reddit Sentiment Analysis**: Gathers and analyzes comments from political subreddits
+- **Polymarket Integration**: Fetches real-time prediction market odds and trader opinions
+- **Multi-Source News**: Aggregates news from 10+ APIs (GDELT, NewsAPI, GNews, etc.)
+- **Financial Market Analysis**: Tracks gold and crypto prices as conflict indicators
+- **LLM Deep Analysis**: Uses Claude AI for sophisticated reasoning and predictions
+- **Comprehensive Reports**: Generates detailed English and Persian reports with charts
+
+## Project Structure
+
+```
+├── main.py                 # Entry point
+├── credentials.py          # API keys (not in git)
+├── requirements.txt        # Dependencies
+├── src/
+│   ├── core/               # Core infrastructure
+│   │   ├── config.py       # Configuration settings
+│   │   └── cache_manager.py # Data caching
+│   ├── data/               # Data collection modules
+│   │   ├── data_gatherer.py      # Reddit data collection
+│   │   ├── polymarket_fetcher.py # Polymarket API
+│   │   ├── news_aggregator.py    # Multi-source news
+│   │   └── market_analyzer.py    # Financial markets
+│   ├── analysis/           # Analysis modules
+│   │   ├── scenario_analyzer.py      # Sentiment analysis
+│   │   ├── llm_analyzer.py           # Claude AI analysis
+│   │   ├── reasoning_framework.py    # Bayesian reasoning
+│   │   └── user_opinion_summarizer.py
+│   └── reporting/          # Report generation
+│       ├── report_generator.py       # Markdown reports
+│       ├── chart_generator.py        # Visualizations
+│       ├── visualization_helpers.py
+│       ├── investment_advisor.py
+│       └── polymarket_betting_strategy.py
+└── cache/                  # Runtime data (gitignored)
+```
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/iran-conflict-prediction.git
+   cd iran-conflict-prediction
+   ```
+
+2. Install dependencies:
+   ```bash
+   pip3 install -r requirements.txt
+   ```
+
+3. Create `credentials.py` with your API keys:
+   ```python
+   # Reddit API (required)
+   CLIENT_ID = "your_reddit_client_id"
+   CLIENT_SECRET = "your_reddit_client_secret"
+   
+   # Anthropic API (for LLM analysis)
+   ANTHROPIC_API_KEY = "your_anthropic_key"
+   
+   # News APIs (optional, enhances analysis)
+   NEWSAPI_KEY = ""
+   GNEWS_API_KEY = ""
+   WORLDNEWS_API_KEY = ""
+   ALPHAVANTAGE_API_KEY = ""
+   ```
+
+4. (Optional) Edit `src/core/config.py` to customize settings.
 
 ## Usage
-1. Clone the repository.
-2. Run `pip3 install -r requirements.txt`.
-3. Get your credentials from [Reddit](https://www.reddit.com/prefs/apps) and add them to `credentials.py`.
-4. Edit `config.py`.
-5. Run `python3 main.py`.
 
+```bash
+# Full analysis (gather + analyze + report)
+python3 main.py
+
+# Use cached data (skip gathering)
+python3 main.py --skip-gather
+
+# Use cached analysis (skip processing)
+python3 main.py --skip-analyze
+
+# Quick mode (less data, faster)
+python3 main.py --quick
+
+# Skip LLM analysis
+python3 main.py --no-llm
+
+# Show cache status
+python3 main.py --cache-status
+
+# Clear all cached data
+python3 main.py --clear-cache
+
+# Only show Polymarket odds
+python3 main.py --polymarket-only
+```
+
+## Output
+
+Reports are generated in `cache/reports/`:
+- `report_EN.md` - English report with analysis and charts
+- `report_FA.md` - Persian report with RTL support
+
+## API Requirements
+
+- **Reddit API**: Required for comment gathering ([Get credentials](https://www.reddit.com/prefs/apps))
+- **Anthropic API**: Required for LLM analysis ([Get API key](https://console.anthropic.com/))
+- **News APIs**: Optional, but recommended for comprehensive analysis
+
+## License
+
+MIT License - see [LICENSE](LICENSE) file.
